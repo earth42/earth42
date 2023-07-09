@@ -39,7 +39,7 @@ export default function Home() {
             Find cat
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A npm package which contians a cypress custom command.
+            An npm package which contians a cypress custom command.
           </p>
         </a>
       </div>
