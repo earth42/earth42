@@ -26,11 +26,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Detect package manager and generate config lock file
+      - name: Detect package manager
         id: npm-manager
         run: |
           if [ -f "${{ github.workspace }}/package.json" ]; then
-            npm install
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
@@ -44,14 +43,6 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.npm-manager.outputs.manager }}
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
       - name: Restore cache
         uses: actions/cache@v3
         with:
